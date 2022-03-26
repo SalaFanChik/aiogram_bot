@@ -194,19 +194,32 @@ async def my_profile(message: types.Message):
     try:
         profile = list(users.find({"user_id": str(message.chat.id)}))[0]
         if profile['right_now']:
+            try:
+                city2 = str(geolocator.reverse(profile['location'])).split(",")[0]
+            except:
+                pass            
             await bot.send_photo(chat_id=message.chat.id, photo=profile['photo'], caption=f"{profile['last_name']} {profile['name']},{profile['age']}, {profile['location']}\n\n {profile['about_me']}", reply_markup=markup4) 
         else:
             profile = list(companies.find({"user_id": str(message.chat.id)}))[0]
+            try:
+                city2 = str(geolocator.reverse(profile['location'])).split(",")[0]
+            except:
+                pass            
             await bot.send_photo(chat_id=message.chat.id, photo=profile['photo'], caption=f"{profile['company_name']}, {profile['location']}\n\n {profile['about_me']}", reply_markup=markup4) 
 
     except TypeError:
         profile = list(companies.find({"user_id": str(message.chat.id)}))[0]
+        try:
+            city2 = str(geolocator.reverse(profile['location'])).split(",")[0]
+        except:
+            pass            
         await bot.send_photo(chat_id=message.chat.id, photo=profile['photo'], caption=f"{profile['company_name']}, {profile['location']}\n\n {profile['about_me']}", reply_markup=markup4) 
     except Exception as e:
         print(e)
         button34 = KeyboardButton("Создать анкету")
         markup6 = ReplyKeyboardMarkup(resize_keyboard=True).row(button34)
         await message.answer('Зарегистрируйся', reply_markup=markup6)
+
 
 
 async def poisk_company(message: types.Message, state: FSMContext):
