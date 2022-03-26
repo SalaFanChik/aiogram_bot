@@ -1,4 +1,4 @@
-API_TOKEN = '5068486190:AAFQ6MCmqnimn-A8WMhlvhDK9sSEqnq5nSo'
+API_TOKEN = '5223424400:AAG8-QuZbYNFOVZE3jXLq69YbTgPrgQ5yKA'
 
 information = '''
 Привет я Telegram BOT MasterMind привествует тебя. MasterMind-группами называют небольшие сообщества людей, 
