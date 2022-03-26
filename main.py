@@ -350,6 +350,7 @@ async def poisk(message: types.Message, state: FSMContext):
                         if fuzz.ratio(city, city2) > 60:
                             key_words2 = [x.lower() for x in user['key_words'].split(",")]
                             result=list(set(key_words) & set(key_words2))
+                            з
                             if result:
                                 await state.update_data(caller_id=id_from_func_caller, sought_for=sought_for)
                                 await Is_liked.liked.set()
