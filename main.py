@@ -305,8 +305,10 @@ async def poisk(message: types.Message, state: FSMContext):
     button2 = KeyboardButton("👎")
     button3 = KeyboardButton("Репорт")
     button4 = KeyboardButton("Главное меню")
-    if not city.isalpha():
+    try:
         city = str(geolocator.reverse(city)).split(',')[0]
+    except:
+        pass
     markup4 = ReplyKeyboardMarkup(resize_keyboard=True).row(button1, button2, button3, button4)
     for user in users.find({"user_id":{"$ne":id_from_func_caller}}):
         col += 1 
